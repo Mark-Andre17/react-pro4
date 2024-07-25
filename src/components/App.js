@@ -3,7 +3,7 @@ import { Pictures } from './Pictures';
 import { Header } from './Header';
 import { useSelector, useDispatch } from'react-redux';
 import { useEffect } from 'react';
-import { loadAlbums, loadPosters, loadPhotos } from '../redux/action';
+import { loadAlbums, loadPosters, loadPhotos, getAlbumId } from '../redux/action';
 
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
   const loadingPosters = useSelector(state => state.loadingPosters);
   const loadingPhotos = useSelector(state => state.loadingPhotos);
   const photos = useSelector(state => state.photos);
+  const albumId = useSelector(state => state.albumID);
 
 
   useEffect(() => {
@@ -22,7 +23,7 @@ function App() {
   }, []);
 
   const handleClick = (id) => {
-    dispatch(loadPhotos(id))
+    dispatch(getAlbumId(id))
   }
 
   return (
@@ -36,7 +37,7 @@ function App() {
           loadingPosters={loadingPosters} 
           handleClick={handleClick}
         />
-        <Pictures loadingPhotos={loadingPhotos} photos={photos}/>
+        <Pictures loadingPhotos={loadingPhotos} photos={photos} posters={posters} albumId={albumId}/>
       </div>
     </div>
   );

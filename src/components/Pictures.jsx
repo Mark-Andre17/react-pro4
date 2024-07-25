@@ -1,13 +1,15 @@
+import { useState,useEffect } from "react";
 
-export const Pictures = ({ loadingPhotos, photos }) => {
+
+export const Pictures = ({ loadingPhotos, posters, albumId }) => {
     return (
         <div className="pictures-block">
             {loadingPhotos ? 'Loading...' : (
-                    photos.map(photo => (
-                        <div key={photo.id} className="picture-card">
-                            <img src={photo.url} alt={photo.title} />
-                        </div>
-                    ))
+                    posters.map(photo => photo.albumId === albumId ? (
+                    <div key={photo.id} className="picture-card">
+                        <img src={photo.url} alt={photo.title} />
+                    </div>
+                    ) : false)
             )}
         </div>
     )

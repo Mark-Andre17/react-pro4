@@ -1,4 +1,4 @@
-import { LOAD_ALBUMS, LOAD_POSTERS,PRELOAD_ALBUMS,PRELOAD_POSTERS, PRELOAD_PHOTOS, LOAD_PHOTOS } from "./reducer"
+import { LOAD_ALBUMS, LOAD_POSTERS,PRELOAD_ALBUMS,PRELOAD_POSTERS, PRELOAD_PHOTOS, LOAD_PHOTOS, GET_ALBUM_ID } from "./reducer"
 
 export const loadAlbums = () => {
     return (dispatch) => {
@@ -19,14 +19,18 @@ export const loadPosters = () => {
         .then((posters) => dispatch({type: LOAD_POSTERS, payload: posters}));
     }
 }
-
-export const loadPhotos = (id) => {
+export const getAlbumId = (id) => {
     return (dispatch) => {
-        dispatch({type: PRELOAD_PHOTOS});
-
-        fetch(`https://jsonplaceholder.typicode.com/photos`)
-        .then((responce) => responce.json())
-        .then((data) => data.filter(photo => photo.albumId === id))
-        .then((photo) => dispatch({type: LOAD_PHOTOS, payload: photo}));
+        dispatch({type: GET_ALBUM_ID, payload: id});
     }
 }
+// export const loadPhotos = (id) => {
+//     return (dispatch) => {
+//         dispatch({type: PRELOAD_PHOTOS});
+
+//         fetch(`https://jsonplaceholder.typicode.com/photos`)
+//         .then((responce) => responce.json())
+//         .then((data) => data.filter(photo => photo.albumId === id))
+//         .then((photo) => dispatch({type: LOAD_PHOTOS, payload: photo}));
+//     }
+// }

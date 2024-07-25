@@ -4,10 +4,12 @@ export const LOAD_POSTERS = 'load/posters/success';
 export const PRELOAD_POSTERS = 'load/posters/waiting';
 export const LOAD_PHOTOS = 'load/photos/success';
 export const PRELOAD_PHOTOS = 'load/photos/waiting';
+export const GET_ALBUM_ID = 'get/album/id';
 
 const initialState = {
     albums: [],
     posters: [],
+    albumID: null,
     photos: [],
     loading: false,
     loadingPosters: false,
@@ -38,17 +40,33 @@ export const reducer =(state = initialState, action) => {
                  posters: action.payload,
                  loadingPosters: false
             }
-        case PRELOAD_PHOTOS:
+        case GET_ALBUM_ID:
             return {
                 ...state,
-                 loadingPhotos: true
+                 albumID: action.payload
             }
-        case LOAD_PHOTOS:
-            return {
-                ...state,
-                 photos: action.payload,
-                 loadingPhotos: false
-            }
+        // case PRELOAD_PHOTOS:
+        //     return {
+        //         ...state,
+        //          loadingPhotos: true
+        //     }
+        // case LOAD_PHOTOS:
+        //     return {
+        //         ...state, 
+        //         photos: posters.filter((photo) => photo.albumId === albumID)
+        //     }
+        // case PRELOAD_ALBUMS:
+        // case PRELOAD_PHOTOS:
+        //     return {
+        //         ...state,
+        //          loadingPhotos: true
+        //     }
+        // case LOAD_PHOTOS:
+        //     return {
+        //         ...state,
+        //          photos: action.payload,
+        //          loadingPhotos: false
+        //     }
         default: 
          return state
     }
