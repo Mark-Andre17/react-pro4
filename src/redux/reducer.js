@@ -45,11 +45,11 @@ export const reducer =(state = initialState, action) => {
                 ...state,
                  albumID: action.payload
             }
-        // case PRELOAD_PHOTOS:
-        //     return {
-        //         ...state,
-        //          loadingPhotos: true
-        //     }
+        case PRELOAD_PHOTOS:
+            return {
+                ...state,
+                 loadingPhotos: true
+            }
         // case LOAD_PHOTOS:
         //     return {
         //         ...state, 
